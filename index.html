@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Psychic Game</title>
+</head>
+<body>
+
+	<h2> The Psychic Game </h2>
+
+	<p> Guess which letter I'm thinking of</p>
+
+
+	<p id= "wins">Wins: </p>
+	<p id= "losses">Losses: </p>
+	<p id= "guessLeft">Guesses Left: </p>
+	<p id= "userGuessSoFar">Your guesses so far: </p>
+
+
+<script>
+
+		var wins = 0;
+		var losses = 0;
+		var guessesLeft = 9;
+		var guessSoFar = [];
+		var compGuess = null;
+
+
+		var computerChoice = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+		
+		// allows the computer to randomize thier choice
+		var computerInput = computerChoice[Math.floor(Math.random() * computerChoice.length)];
+
+// FUNCTIONS=====================================================================================
+
+var remainingGuesses = function () {
+		document.querySelector("#guessLeft").innerHTML = "Guesses Left: " + guessesLeft;
+	}
+
+// listing the user guesses
+	var userguess = function () {
+		document.querySelector("#userGuessSoFar").innerHTML = "Your Guesses so far: " + guessSoFar.join(", ");
+	}
+
+
+// reset function
+	var reset = function () {
+		guessesLeft = 9;
+		guessSoFar = [];
+	};
+	
+	
+
+
+
+
+
+// 
+
+	document.onkeyup = function (event) {
+
+		var userInput = String.fromCharCode(event.keyCode).toLowerCase();
+
+		// checking that the user input was being logged
+			console.log (userInput);
+
+		guessSoFar.push(userInput);
+			userguess ();
+	
+	if (userInput !== computerInput) {
+
+		guessesLeft--;
+		remainingGuesses ();
+
+	if (guessesLeft <= 0) {
+		reset ();
+	}
+	}
+	
+		
+};
+
+	</script>
+	
+</body>
+</html>
